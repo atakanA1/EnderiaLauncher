@@ -1,0 +1,17 @@
+name: Build APK
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Buildozer Action
+        uses: ArtemSerebrenninkov/buildozer-action@v1
+        with:
+          command: android debug
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: Enderia-Launcher-APK
+          path: bin/*.apk
